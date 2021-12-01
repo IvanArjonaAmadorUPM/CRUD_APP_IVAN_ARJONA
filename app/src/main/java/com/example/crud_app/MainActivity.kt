@@ -2,6 +2,7 @@ package com.example.crud_app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -59,10 +60,17 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
                 else{
                     showError()
                 }
+                hideKeyboard()
             }
 
         }
     }
+
+    private fun hideKeyboard() {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.viewRoot.windowToken, 0)
+    }
+
     private fun showError(){
         Toast.makeText(this,"No puede mostrarse el usuario ",Toast.LENGTH_SHORT).show()
     }
