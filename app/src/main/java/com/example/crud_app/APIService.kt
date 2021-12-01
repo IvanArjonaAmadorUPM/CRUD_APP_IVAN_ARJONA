@@ -5,6 +5,7 @@ import retrofit2.http.*
 
 
 interface APIService {
+
     @GET
     fun getUserById(@Url url:String):Response<UserResponse>
 
