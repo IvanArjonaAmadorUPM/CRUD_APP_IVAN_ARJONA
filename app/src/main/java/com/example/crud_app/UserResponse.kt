@@ -3,4 +3,8 @@ import retrofit2.*
 import com.google.gson.annotations.SerializedName
 
 
-data class UserResponse(@SerializedName("name") var status:String, @SerializedName("message") var images: List<String>)
+data class UserResponse(
+                        @SerializedName("name") var name:String,
+                        @SerializedName("birthdate") var birthdate: String,
+                        @SerializedName("id") var id:Int
+                        )
