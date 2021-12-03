@@ -49,12 +49,33 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
         CoroutineScope(Dispatchers.IO).launch {
             val call : Response<UserResponse> = getRetrofit().create(APIService::class.java).getUserById("$query")
             val users: UserResponse? = call.body()
+
+            println("user response " + users.toString())
+
+
             runOnUiThread {
                 if(call.isSuccessful){
 
-                    val usuario = users?.name
+                    val nombreUsuario = users?.name
+                    val birthdateUsuario = users?.birthdate
+                    val idUsuario = users?.id
+
                     userList.clear()
-                    userList.add(usuario.toString())
+                    userList.add(nombreUsuario.toString())
+                    userList.add(birthdateUsuario.toString())
+                    userList.add(idUsuario.toString())
+
+
+                    println("el nombre es" + users?.name)
+                    println("el cumpleaños es es" + users?.birthdate)
+                    println("el id es" + users?.id)
+                    println("el nombre  es " + nombreUsuario.toString())
+                    println("el birthdate  es " + nombreUsuario.toString())
+                    println("el id  es " + nombreUsuario.toString())
+                    println("e////////////////////////////////")
+
+
+
                     adapter.notifyDataSetChanged()
                 }
                 else{

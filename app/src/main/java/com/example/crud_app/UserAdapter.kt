@@ -15,6 +15,7 @@ class UserAdapter(val users:List<String>):RecyclerView.Adapter<UserViewHolder>()
     override fun onBindViewHolder(holder: UserViewHolder, position: Int)  {
         val item = users[position]
         holder.bin(item)
+
     }
     //retorna el numero de usuarios
     override fun getItemCount(): Int = users.size
