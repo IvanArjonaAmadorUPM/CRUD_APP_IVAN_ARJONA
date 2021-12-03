@@ -7,7 +7,6 @@ import com.example.crud_app.databinding.ItemUserBinding
 class UserViewHolder(view: View):RecyclerView.ViewHolder(view) {
     private val binding = ItemUserBinding.bind(view)
     fun bin(user:String){
-        println("EL BINDING ES " + user)
         binding.ivUser1.text = user
         binding.ivUser1.text = user
         binding.ivUser1.text = user

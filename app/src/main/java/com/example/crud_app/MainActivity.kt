@@ -50,9 +50,6 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
             val call : Response<UserResponse> = getRetrofit().create(APIService::class.java).getUserById("$query")
             val users: UserResponse? = call.body()
 
-            println("user response " + users.toString())
-
-
             runOnUiThread {
                 if(call.isSuccessful){
 
@@ -64,15 +61,6 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
                     userList.add(nombreUsuario.toString())
                     userList.add(birthdateUsuario.toString())
                     userList.add(idUsuario.toString())
-
-
-                    println("el nombre es" + users?.name)
-                    println("el cumpleaños es es" + users?.birthdate)
-                    println("el id es" + users?.id)
-                    println("el nombre  es " + nombreUsuario.toString())
-                    println("el birthdate  es " + nombreUsuario.toString())
-                    println("el id  es " + nombreUsuario.toString())
-                    println("e////////////////////////////////")
 
 
 
