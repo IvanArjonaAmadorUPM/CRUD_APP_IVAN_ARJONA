@@ -1,13 +1,9 @@
 package com.example.crud_app
 
-import retrofit2.Response
-import retrofit2.http.*
 import okhttp3.ResponseBody
 import retrofit2.Call
-
-import retrofit2.http.DELETE
-
-
+import retrofit2.Response
+import retrofit2.http.*
 
 
 
@@ -17,7 +13,15 @@ interface APIService {
     suspend fun getUserById(@Url url:String):Response<UserResponse>
 
     @DELETE("/api/User/{id}")
-    fun deleteUser(@Path("id") id: String?): Call<ResponseBody?>?
+    suspend fun deleteUser(@Path("id") id: Int?): Call<ResponseBody?>?
+
+    @FormUrlEncoded
+    @POST("createuser")
+    fun createUser(
+        @Field("name") name:String,
+        @Field("birthdate") birthdate:String,
+        @Field("id") id:String
+    ):Call<ResponseBody>
 
 
 }

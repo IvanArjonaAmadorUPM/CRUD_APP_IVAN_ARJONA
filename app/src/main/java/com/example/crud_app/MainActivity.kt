@@ -13,6 +13,11 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import android.R
+import android.view.View
+import android.widget.Button
+import android.widget.ImageButton
+
 
 class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
@@ -25,7 +30,9 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.svUser.setOnQueryTextListener(this)
+
         initRecyclerView()
+        //initDeleteButton(globalUserId)
 
     }
     //inicializa la vista
@@ -34,6 +41,9 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
         binding.rvUser.layoutManager = LinearLayoutManager(this)
         binding.rvUser.adapter = adapter
     }
+
+
+
 
     /*Función que obtiene la url de la API externa
     y convierte los datos de JSON al modelo creado*/
@@ -52,19 +62,19 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
 
             runOnUiThread {
                 if(call.isSuccessful){
-
                     val nombreUsuario = users?.name
                     val birthdateUsuario = users?.birthdate
                     val idUsuario = users?.id
+
+                    globalUserId=idUsuario
 
                     userList.clear()
                     userList.add(nombreUsuario.toString())
                     userList.add(birthdateUsuario.toString())
                     userList.add(idUsuario.toString())
 
-
-
                     adapter.notifyDataSetChanged()
+
                 }
                 else{
                     showError()
@@ -94,4 +104,10 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
     override fun onQueryTextChange(newText: String?): Boolean {
         return true
     }
+
+    companion object {
+
+        var globalUserId: Int? = null
+    }
+
 }
